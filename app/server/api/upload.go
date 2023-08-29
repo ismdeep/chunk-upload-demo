@@ -6,22 +6,22 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/ismdeep/parser"
 )
 
 // PutChunkData put chunk data
 func PutChunkData(c *gin.Context) {
 	taskID := c.Param("task_id")
 
-	index, err := parser.ToInt64(c.Param("index"))
+	index, err := strconv.ParseInt(c.Param("index"), 10, 64)
 	if err != nil {
 		fail(c, err)
 		return
 	}
 
-	size, err := parser.ToInt64(c.Param("size"))
+	size, err := strconv.ParseInt(c.Param("size"), 10, 64)
 	if err != nil {
 		fail(c, err)
 		return
